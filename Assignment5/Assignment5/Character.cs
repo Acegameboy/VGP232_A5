@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using NUnit.Framework;
 
 namespace Assignment5
 {
@@ -18,6 +19,7 @@ namespace Assignment5
         /// </summary>
         public Character()
         {
+            IsAlive = true;
         }
 
         /// <summary>
@@ -42,7 +44,13 @@ namespace Assignment5
         /// <param name="damage">The amount of damage taken</param>
         public void TakeDamage(int damage)
         {
-            Health = 100;
+            Health -= damage;
+
+            if (Health <= 0)
+            {
+                Health = 0;
+                IsAlive = false;
+            }
         }
 
         /// <summary>
@@ -51,7 +59,12 @@ namespace Assignment5
         /// <param name="amount">The amount of health to recover</param>
         public void RestoreHealth(int amount)
         {
-            Health = 1;
+            Health += amount;
+
+            if (Health > MaxHealth)
+            {
+                Health = MaxHealth;
+            }
         }
 
         public override string ToString()
