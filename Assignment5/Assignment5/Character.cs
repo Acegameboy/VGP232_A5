@@ -59,6 +59,14 @@ namespace Assignment5
         /// <param name="amount">The amount of health to recover</param>
         public void RestoreHealth(int amount)
         {
+            if (!IsAlive)
+            {
+                if (Health + amount > 0)
+                {
+                    IsAlive = true;
+                }
+            }
+
             Health += amount;
 
             if (Health > MaxHealth)
